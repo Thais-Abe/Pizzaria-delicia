@@ -5,9 +5,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "pizzaPedida_has_ingrediente")
 public class PizzaPedida_has_Ingrediente {
-    @Id
-    private long id;
-    @ManyToOne
-    @JoinColumn()
-    private Ingrediente ingrediente;
+    @EmbeddedId
+   private PizzaPedida_has_IngredienteId id;
 }

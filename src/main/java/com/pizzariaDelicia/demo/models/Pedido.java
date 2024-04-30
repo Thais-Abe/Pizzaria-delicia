@@ -12,10 +12,10 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "idCliente")
     private Cliente cliente;
     @ManyToOne
-    @JoinColumn(name = "fornada_id")
+    @JoinColumn(name = "idFornada")
     private Fornada fornada;
     private LocalDate dataHora;
 }

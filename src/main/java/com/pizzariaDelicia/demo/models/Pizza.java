@@ -8,6 +8,7 @@ public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(length = 50)
     private String nome;
     private float precoBase;
     private boolean personalizada;

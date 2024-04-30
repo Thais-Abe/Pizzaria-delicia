@@ -7,9 +7,11 @@ import jakarta.persistence.*;
 public class BebidaPedida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     @ManyToOne
-    @JoinColumn(name = "bebida_id")
+    @JoinColumn(name = "idPedido")
+    private Pedido pedido;
+    @ManyToOne
+    @JoinColumn(name = "idBebida")
     private Bebida bebida;
 
     private byte quantidade;

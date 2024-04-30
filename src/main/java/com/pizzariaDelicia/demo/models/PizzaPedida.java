@@ -4,19 +4,20 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "pizzaPedida")
+@Embeddable
 public class PizzaPedida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     //muitas pizzas para 1 pedido
-    @JoinColumn(name = "pedido_id")
+    @JoinColumn(name = "idPedido")
     private Pedido pedido;
     @ManyToOne
-    @JoinColumn(name = "pizza_id")
+    @JoinColumn(name = "idPizza")
     private Pizza pizza;
     @ManyToOne
-    @JoinColumn(name = "tamanho_id")
+    @JoinColumn(name = "idTamanho")
     private Tamanho tamanho;
     private byte quantidade;
 }
