@@ -8,7 +8,8 @@ public class Ingrediente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(length = 50)
+    @Column(nullable = false, length = 50)
     private String nome;
+    @Column(nullable = false)
     private float preco;
 }

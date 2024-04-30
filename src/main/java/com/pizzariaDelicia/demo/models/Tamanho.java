@@ -9,7 +9,8 @@ public class Tamanho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private byte id;
-    @Column(length = 50)
+    @Column(nullable = false,length = 50)
     private String nome;
+    @Column(nullable = false)
     private Float desconto;
 }

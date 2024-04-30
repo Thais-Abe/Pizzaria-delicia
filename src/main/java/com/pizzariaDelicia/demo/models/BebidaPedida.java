@@ -13,7 +13,7 @@ public class BebidaPedida {
     @ManyToOne
     @JoinColumn(name = "idBebida")
     private Bebida bebida;
-
+    @Column(nullable = false)
     private byte quantidade;
 
 }

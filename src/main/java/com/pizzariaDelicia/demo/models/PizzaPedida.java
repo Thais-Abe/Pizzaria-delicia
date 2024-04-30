@@ -19,5 +19,6 @@ public class PizzaPedida {
     @ManyToOne
     @JoinColumn(name = "idTamanho")
     private Tamanho tamanho;
+    @Column(nullable = false)
     private byte quantidade;
 }

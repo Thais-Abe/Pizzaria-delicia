@@ -8,6 +8,8 @@ public class Fornada {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private byte id;
+    @Column(nullable = false)
     private byte numFornada;
+    @Column(nullable = false)
     private byte qtdPizzas;
 }
