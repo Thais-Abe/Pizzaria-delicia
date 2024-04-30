@@ -21,4 +21,51 @@ public class PizzaPedida {
     private Tamanho tamanho;
     @Column(nullable = false)
     private byte quantidade;
+
+    public PizzaPedida(int id) {
+        this.id = id;
+    }
+
+    public PizzaPedida() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public Pizza getPizza() {
+        return pizza;
+    }
+
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
+    }
+
+    public Tamanho getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(Tamanho tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public byte getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(byte quantidade) {
+        this.quantidade = quantidade;
+    }
 }

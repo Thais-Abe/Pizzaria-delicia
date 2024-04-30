@@ -13,4 +13,35 @@ public class Tamanho {
     private String nome;
     @Column(nullable = false)
     private Float desconto;
+
+    public Tamanho(byte id) {
+        this.id = id;
+    }
+
+    public Tamanho() {
+    }
+
+    public byte getId() {
+        return id;
+    }
+
+    public void setId(byte id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Float getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(Float desconto) {
+        this.desconto = desconto;
+    }
 }
