@@ -37,13 +37,12 @@ public class ClienteService {
         }
     }
 
-    public ClienteDTO updateById(ClienteDTO clienteDTO) {
-        this.findById(clienteDTO.getId());
+    public ClienteDTO updateById(ClienteDTO clienteDTO,long id) {
+        this.findById(id);
         Cliente cliente = ClienteDTO.convert(clienteDTO);
         cliente.setId(cliente.getId());
         this.clienteRepository.save(cliente);
         return new ClienteDTO(cliente);
-
     }
 
     public ClienteDTO deleteById(long id){

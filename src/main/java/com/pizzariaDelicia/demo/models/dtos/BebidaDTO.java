@@ -9,7 +9,7 @@ public class BebidaDTO {
     private int id;
     @NotBlank(message = "O nome da bebida deve ser preenchido")
     private String nome;
-    @NotBlank(message = "O preço da bebida deve ser preenchido")
+
     private float preco;
 
 

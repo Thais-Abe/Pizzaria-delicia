@@ -1,6 +1,7 @@
 package com.pizzariaDelicia.demo.models.dtos;
 
 
+import com.pizzariaDelicia.demo.models.Bebida;
 import com.pizzariaDelicia.demo.models.Cliente;
 import jakarta.validation.constraints.NotBlank;
 
@@ -28,6 +29,9 @@ public class ClienteDTO {
         this.endereco = cliente.getEndereco();
         this.login = cliente.getLogin();
         this.senha = cliente.getSenha();
+    }
+
+    public ClienteDTO(Bebida bebida) {
     }
 
     public static Cliente convert(ClienteDTO clienteDTO){

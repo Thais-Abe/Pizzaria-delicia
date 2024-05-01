@@ -9,14 +9,14 @@ public class PizzaPedida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     //muitas pizzas para 1 pedido
     @JoinColumn(name = "idPedido")
     private Pedido pedido;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "idPizza")
     private Pizza pizza;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "idTamanho")
     private Tamanho tamanho;
     @Column(nullable = false)

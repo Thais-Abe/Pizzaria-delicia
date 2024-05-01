@@ -11,16 +11,16 @@ public class PizzaPedidaDTO {
     private long idPedido;
 
     private int idPizza;
-    @NotBlank(message = "O tamanho deve ser preenchido")
-    private Tamanho tamanho;
-    @NotBlank(message = "A quantidade deve ser preenchido")
+
+    private byte idTamanho;
+
     private byte quantidade;
 
     public PizzaPedidaDTO(PizzaPedida pizzaPedida) {
         this.id = pizzaPedida.getId();
         this.idPedido = pizzaPedida.getPedido().getId();
         this.idPizza =  pizzaPedida.getPizza().getId();
-        this.tamanho = pizzaPedida.getTamanho();
+        this.idTamanho = pizzaPedida.getTamanho().getId();
         this.quantidade = pizzaPedida.getQuantidade();
     }
 
@@ -29,9 +29,12 @@ public class PizzaPedidaDTO {
         pizzaPedida.setId(pizzaPedidaDTO.getId());
         pizzaPedida.setPedido(new Pedido(pizzaPedidaDTO.getIdPedido()));
         pizzaPedida.setPizza(new Pizza(pizzaPedidaDTO.getIdPizza()));
-        pizzaPedida.setTamanho(new Tamanho());
+        pizzaPedida.setTamanho(new Tamanho(pizzaPedidaDTO.getTamanho()));
         pizzaPedida.setQuantidade(pizzaPedidaDTO.getQuantidade());
         return pizzaPedida;
+    }
+
+    public PizzaPedidaDTO() {
     }
 
     public long getId() {
@@ -58,12 +61,12 @@ public class PizzaPedidaDTO {
         this.idPizza = idPizza;
     }
 
-    public Tamanho getTamanho() {
-        return tamanho;
+    public byte getTamanho() {
+        return idTamanho;
     }
 
-    public void setTamanho(Tamanho tamanho) {
-        this.tamanho = tamanho;
+    public void setTamanho(byte tamanho) {
+        this.idTamanho = tamanho;
     }
 
     public byte getQuantidade() {

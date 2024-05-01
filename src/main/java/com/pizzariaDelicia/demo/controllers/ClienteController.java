@@ -28,10 +28,9 @@ public class ClienteController {
         return this.clienteService.save(clienteDTO);
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ClienteDTO updateById(@RequestBody @Valid ClienteDTO clienteDTO){
-        return this.clienteService.updateById(clienteDTO);
+    public ClienteDTO updateById(@RequestBody @Valid ClienteDTO clienteDTO, @PathVariable long id){
+        return this.clienteService.updateById(clienteDTO, id);
     }
-
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ClienteDTO deleteById(@PathVariable long id){
