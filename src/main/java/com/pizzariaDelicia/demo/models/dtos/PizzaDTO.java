@@ -19,7 +19,7 @@ public class PizzaDTO {
         this.personalizada = pizza.isPersonalizada();
     }
 
-    public static  Pizza convert(PizzaDTO pizzaDTO){
+    public static Pizza convert(PizzaDTO pizzaDTO){
         Pizza pizza = new Pizza();
         pizza.setId(pizzaDTO.getId());
         pizza.setNome(pizzaDTO.getNome());

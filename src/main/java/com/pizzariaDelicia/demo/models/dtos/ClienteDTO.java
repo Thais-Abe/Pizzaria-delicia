@@ -45,6 +45,9 @@ public class ClienteDTO {
         this.id = id;
     }
 
+    public ClienteDTO() {
+    }
+
     public long getId() {
         return id;
     }
