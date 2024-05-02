@@ -16,21 +16,21 @@ public class TamanhoController {
     @Autowired
     private TamanhoService tamanhoService;
     @GetMapping
-    public List<TamanhoDTO> findTamanhoById(){
-        return this.tamanhoService.findAllTamanhos();
+    public List<TamanhoDTO> retornarTodosTamanhos(){
+        return this.tamanhoService.retornarTodosTamanhos();
     }
     @PostMapping
-    public TamanhoDTO save(@RequestBody @Valid TamanhoDTO tamanhoDTO){
-        return this.tamanhoService.save(tamanhoDTO);
+    public TamanhoDTO salvarTamanho(@RequestBody @Valid TamanhoDTO tamanhoDTO){
+        return this.tamanhoService.salvarTamanho(tamanhoDTO);
     }
 
     @PutMapping("/{id}")
-    public TamanhoDTO updateDrinkById(@RequestBody TamanhoDTO tamanhoDTO, @PathVariable byte id){
-        return  this.tamanhoService.updateTamanhoById(tamanhoDTO, id);
+    public TamanhoDTO modificarTamanhoPorID(@RequestBody TamanhoDTO tamanhoDTO, @PathVariable byte id){
+        return  this.tamanhoService.modificarTamanhoPorID(tamanhoDTO, id);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteTamanhoById(@PathVariable byte id){
-        return this.tamanhoService.deleteTamanhoById(id);
+    public String deletarTamanhoPorID(@PathVariable byte id){
+        return this.tamanhoService.deletarTamanhoPorID(id);
     }
 }

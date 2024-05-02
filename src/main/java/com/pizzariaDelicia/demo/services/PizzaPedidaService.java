@@ -13,13 +13,13 @@ import java.util.Optional;
 public class PizzaPedidaService {
     @Autowired
    private PizzaPedidoRepository pizzaPedidoRepository;
-    public PizzaPedidaDTO save(PizzaPedidaDTO pizzaPedidaDTO) {
+    public PizzaPedidaDTO salvarPedido(PizzaPedidaDTO pizzaPedidaDTO) {
         PizzaPedida pizzaPedida = PizzaPedidaDTO.convert(pizzaPedidaDTO);
         pizzaPedida = this.pizzaPedidoRepository.save(pizzaPedida);
         return new PizzaPedidaDTO(pizzaPedida);
     }
 
-    public PizzaPedidaDTO findOrderById(long id) {
+    public PizzaPedidaDTO encontrarPedidoPoID(long id) {
         Optional<PizzaPedida> pizzaPedida = this.pizzaPedidoRepository.findById(id);
         if(pizzaPedida.isEmpty()){
             throw new RuntimeException("O pedido não foi encontrado");
@@ -27,14 +27,14 @@ public class PizzaPedidaService {
             return new PizzaPedidaDTO(pizzaPedida.get());
         }
     }
-    public PizzaPedidaDTO updateOrderById(PizzaPedidaDTO pizzaPedidaDTO, long id) {
-        this.findOrderById(id);
+    public PizzaPedidaDTO modificarPedidoPeloID(PizzaPedidaDTO pizzaPedidaDTO, long id) {
+        this.encontrarPedidoPoID(id);
         PizzaPedida pizzaPedida = PizzaPedidaDTO.convert(pizzaPedidaDTO);
         return new PizzaPedidaDTO(pizzaPedida);
     }
 
-    public PizzaPedidaDTO deleteOrderById(long id) {
-        PizzaPedidaDTO pizzaPedidaDTO = this.findOrderById(id);
+    public PizzaPedidaDTO deletarPedido(long id) {
+        PizzaPedidaDTO pizzaPedidaDTO = this.encontrarPedidoPoID(id);
         this.pizzaPedidoRepository.deleteById(id);
         return pizzaPedidaDTO;
     }

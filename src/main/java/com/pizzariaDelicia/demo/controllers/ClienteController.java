@@ -15,25 +15,25 @@ public class ClienteController {
     private ClienteService clienteService ;
 
     @GetMapping
-    public List<ClienteDTO> findAll(){
-        return this.clienteService.findAll();
+    public List<ClienteDTO> retornarTodosClientes(){
+        return this.clienteService.retornarTodosClientes();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ClienteDTO findById(@PathVariable long id){
-        return this.clienteService.findById(id);
+    public ClienteDTO acharClientePorID(@PathVariable long id){
+        return this.clienteService.acharClientePorID(id);
     }
     @PostMapping
     public ClienteDTO save(@RequestBody @Valid ClienteDTO clienteDTO){
         return this.clienteService.save(clienteDTO);
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ClienteDTO updateById(@RequestBody @Valid ClienteDTO clienteDTO, @PathVariable long id){
-        return this.clienteService.updateById(clienteDTO, id);
+    public ClienteDTO fazerAleracoesCliente(@RequestBody @Valid ClienteDTO clienteDTO, @PathVariable long id){
+        return this.clienteService.fazerAleracoesCliente(clienteDTO, id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ClienteDTO deleteById(@PathVariable long id){
-        return this.clienteService.deleteById(id);
+    public ClienteDTO deletar(@PathVariable long id){
+        return this.clienteService.deletar(id);
     }
 }

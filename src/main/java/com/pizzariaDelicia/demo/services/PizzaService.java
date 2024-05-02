@@ -13,14 +13,14 @@ public class PizzaService {
 
     @Autowired
     private PizzaRepository pizzaRepository;
-    public PizzaDTO save(PizzaDTO pizzaDTO) {
+    public PizzaDTO salvarPizza(PizzaDTO pizzaDTO) {
         Pizza pizza = PizzaDTO.convert(pizzaDTO);
         pizzaRepository.save(pizza);
         return new PizzaDTO(pizza);
     }
 
 
-    public PizzaDTO getPizzaById(long id) {
+    public PizzaDTO retornarPizzaPeloID(long id) {
         Optional<Pizza> pizza = pizzaRepository.findById(id);
         if(pizza.isEmpty()){
             throw new RuntimeException("Pizza não encontrada");
@@ -29,16 +29,16 @@ public class PizzaService {
         }
     }
 
-    public PizzaDTO updatePizzaById(long id, PizzaDTO pizzaDTO) {
-        this.getPizzaById(id);
+    public PizzaDTO RealizarAlteracoesPizza(long id, PizzaDTO pizzaDTO) {
+        this.retornarPizzaPeloID(id);
         Pizza pizza = PizzaDTO.convert(pizzaDTO);
         pizza = pizzaRepository.save(pizza);
         return new PizzaDTO(pizza);
 
     }
 
-    public PizzaDTO deleteById(long id) {
-        PizzaDTO pizzaDTO = getPizzaById(id);
+    public PizzaDTO deletarPizzaPorID(long id) {
+        PizzaDTO pizzaDTO = retornarPizzaPeloID(id);
        this.pizzaRepository.deleteById(id);
        return pizzaDTO;
     }

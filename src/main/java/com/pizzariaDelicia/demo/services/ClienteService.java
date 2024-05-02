@@ -23,12 +23,12 @@ public class ClienteService {
     }
 
     //recupera clientes do banco
-    public List<ClienteDTO> findAll() {
+    public List<ClienteDTO> retornarTodosClientes() {
         List<Cliente> clienteLista = this.clienteRepository.findAll();
         return clienteLista.stream().map(ClienteDTO::new).collect(Collectors.toList());
     }
 
-    public ClienteDTO findById(long id){
+    public ClienteDTO acharClientePorID(long id){
         Optional<Cliente> cliente = this.clienteRepository.findById(id);
         if(cliente.isEmpty()){
             throw new RuntimeException("O cliente não foi encontrado");
@@ -37,16 +37,16 @@ public class ClienteService {
         }
     }
 
-    public ClienteDTO updateById(ClienteDTO clienteDTO,long id) {
-        this.findById(id);
+    public ClienteDTO fazerAleracoesCliente(ClienteDTO clienteDTO,long id) {
+        this.acharClientePorID(id);
         Cliente cliente = ClienteDTO.convert(clienteDTO);
         cliente.setId(cliente.getId());
         this.clienteRepository.save(cliente);
         return new ClienteDTO(cliente);
     }
 
-    public ClienteDTO deleteById(long id){
-        ClienteDTO clienteDTO = findById(id);
+    public ClienteDTO deletar(long id){
+        ClienteDTO clienteDTO = acharClientePorID(id);
         this.clienteRepository.deleteById(id);
         return clienteDTO;
     }

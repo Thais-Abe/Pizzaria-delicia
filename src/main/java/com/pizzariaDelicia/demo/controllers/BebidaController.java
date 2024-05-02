@@ -1,8 +1,7 @@
 package com.pizzariaDelicia.demo.controllers;
 
 import com.pizzariaDelicia.demo.models.dtos.BebidaDTO;
-import com.pizzariaDelicia.demo.models.dtos.IngredienteDTO;
-import com.pizzariaDelicia.demo.models.dtos.PizzaPedidaDTO;
+
 import com.pizzariaDelicia.demo.services.BebidaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +16,22 @@ public class BebidaController {
     @Autowired
     private BebidaService bebidaService;
     @GetMapping
-    public List<BebidaDTO> findDrinkById(){
-        return this.bebidaService.findAllDrinks();
+    public List<BebidaDTO> retornarBebidas(){
+        return this.bebidaService.retornarBebidas();
     }
     @PostMapping
-    public BebidaDTO save(@RequestBody @Valid BebidaDTO bebidaDTO){
-        return this.bebidaService.save(bebidaDTO);
+    public BebidaDTO salvar(@RequestBody @Valid BebidaDTO bebidaDTO){
+        return this.bebidaService.salvar(bebidaDTO);
     }
 
     @PutMapping("/{id}")
-    public BebidaDTO updateDrinkById(@RequestBody BebidaDTO bebidaDTO, @PathVariable int id){
-        return  this.bebidaService.updateDrinkById(bebidaDTO, id);
+    public BebidaDTO alterarBebidaPeloID(@RequestBody BebidaDTO bebidaDTO, @PathVariable int id){
+        return  this.bebidaService.alterarBebidaPeloID(bebidaDTO, id);
     }
 
     @DeleteMapping("/{id}")
-    public BebidaDTO deleteDrinkById(@PathVariable int id){
-        return  this.bebidaService.deleteDrinkById(id);
+    public BebidaDTO deletarBebidaPorID(@PathVariable int id){
+        return  this.bebidaService.deletarBebidaPorID(id);
     }
 
 }

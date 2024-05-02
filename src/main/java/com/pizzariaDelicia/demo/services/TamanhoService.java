@@ -20,13 +20,13 @@ public class TamanhoService {
     private TamanhoRepository tamanhoRepository;
 
 
-    public TamanhoDTO save(TamanhoDTO tamanhoDTO) {
+    public TamanhoDTO salvarTamanho(TamanhoDTO tamanhoDTO) {
         Tamanho tamanho = TamanhoDTO.convert(tamanhoDTO);
         tamanhoRepository.save(tamanho);
         return new TamanhoDTO(tamanho);
     }
 
-    public TamanhoDTO updateTamanhoById(TamanhoDTO tamanhoDTO, byte id) {
+    public TamanhoDTO modificarTamanhoPorID(TamanhoDTO tamanhoDTO, byte id) {
        this.findTamanhoById(id);
         Tamanho tamanho = TamanhoDTO.convert(tamanhoDTO);
         return new TamanhoDTO(tamanho);
@@ -41,12 +41,12 @@ public class TamanhoService {
         }
     }
 
-    public String deleteTamanhoById(byte id) {
+    public String deletarTamanhoPorID(byte id) {
         this.tamanhoRepository.deleteById(id);
         return "tamanho deletado";
     }
 
-    public List<TamanhoDTO> findAllTamanhos() {
+    public List<TamanhoDTO> retornarTodosTamanhos() {
         List<Tamanho> listaBebidas = this.tamanhoRepository.findAll();
         return listaBebidas.stream().map(TamanhoDTO::new).collect(Collectors.toList());
     }

@@ -15,21 +15,21 @@ public class PizzaPedidaController {
     private PizzaPedidaService pizzaPedidaService;
 
     @GetMapping("/{id}")
-    public PizzaPedidaDTO findOrderById(@PathVariable long id){
-        return this.pizzaPedidaService.findOrderById(id);
+    public PizzaPedidaDTO encontrarPedidoPoID(@PathVariable long id){
+        return this.pizzaPedidaService.encontrarPedidoPoID(id);
     }
     @PostMapping
-    public PizzaPedidaDTO save(@RequestBody PizzaPedidaDTO pizzaPedidaDTO){
-        return this.pizzaPedidaService.save(pizzaPedidaDTO);
+    public PizzaPedidaDTO salvarPedido(@RequestBody PizzaPedidaDTO pizzaPedidaDTO){
+        return this.pizzaPedidaService.salvarPedido(pizzaPedidaDTO);
     }
     @PutMapping("/{id}")
-    public PizzaPedidaDTO updateOrderById(@RequestBody PizzaPedidaDTO pizzaPedidaDTO, int id){
-        return  this.pizzaPedidaService.updateOrderById(pizzaPedidaDTO, id);
+    public PizzaPedidaDTO modificarPedidoPeloID(@RequestBody PizzaPedidaDTO pizzaPedidaDTO, int id){
+        return  this.pizzaPedidaService.modificarPedidoPeloID(pizzaPedidaDTO, id);
     }
 
     @DeleteMapping("/{id}")
-    public PizzaPedidaDTO deleteOrderById(long id){
-        return  this.pizzaPedidaService.deleteOrderById(id);
+    public PizzaPedidaDTO deletarPedido(long id){
+        return  this.pizzaPedidaService.deletarPedido(id);
     }
 
 

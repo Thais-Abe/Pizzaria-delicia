@@ -15,18 +15,18 @@ public class BebidaService {
     @Autowired
     private BebidaRepository bebidaRepository;
 
-    public List<BebidaDTO> findAllDrinks() {
+    public List<BebidaDTO> retornarBebidas() {
         List<Bebida> listaBebidas = this.bebidaRepository.findAll();
         return listaBebidas.stream().map(BebidaDTO::new).collect(Collectors.toList());
     }
 
-    public BebidaDTO save(BebidaDTO bebidaDTO) {
+    public BebidaDTO salvar(BebidaDTO bebidaDTO) {
         Bebida bebida = BebidaDTO.convert(bebidaDTO);
         this.bebidaRepository.save(bebida);
         return new BebidaDTO(bebida);
     }
 
-    public BebidaDTO updateDrinkById(BebidaDTO bebidaDTO, int id) {
+    public BebidaDTO alterarBebidaPeloID(BebidaDTO bebidaDTO, int id) {
         Optional<Bebida> bebida = this.bebidaRepository.findById(id);
         if(bebida.isEmpty()){
             throw new RuntimeException("Bebida não encontrada");
@@ -37,7 +37,7 @@ public class BebidaService {
 
     }
 
-    public BebidaDTO deleteDrinkById(int id) {
+    public BebidaDTO deletarBebidaPorID(int id) {
         Optional<Bebida> bebida = this.bebidaRepository.findById(id);
         this.bebidaRepository.deleteById(id);
         return new BebidaDTO(bebida.get());
