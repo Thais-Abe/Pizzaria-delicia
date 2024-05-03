@@ -9,7 +9,6 @@ import jakarta.validation.constraints.NotBlank;
 
 public class FornadaDTO {
 
-
     private byte id;
 
     private byte numFornada;

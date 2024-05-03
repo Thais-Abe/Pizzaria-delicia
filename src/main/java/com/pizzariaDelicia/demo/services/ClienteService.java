@@ -1,7 +1,9 @@
 package com.pizzariaDelicia.demo.services;
 
+import com.pizzariaDelicia.demo.exceptiohandler.ResourceNotFoundException;
 import com.pizzariaDelicia.demo.models.Cliente;
 import com.pizzariaDelicia.demo.models.dtos.ClienteDTO;
+import com.pizzariaDelicia.demo.models.dtos.ClienteDTOComRecord;
 import com.pizzariaDelicia.demo.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,15 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
     //salvar
-    public ClienteDTO save(ClienteDTO clienteDTO) {
-        Cliente cliente = ClienteDTO.convert(clienteDTO);
-        cliente = this.clienteRepository.save(cliente);
-        return new ClienteDTO(cliente);
+    public ClienteDTOComRecord save(ClienteDTOComRecord clienteDTOComRecord) {
+        Cliente cliente = new Cliente();
+        cliente.setNome(clienteDTOComRecord.nome());
+        cliente.setTelefone(clienteDTOComRecord.telefone());
+        cliente.setEndereco(clienteDTOComRecord.endereco());
+        cliente.setLogin(clienteDTOComRecord.login());
+        cliente.setSenha(clienteDTOComRecord.senha());
+        this.clienteRepository.save(cliente);
+        return new ClienteDTOComRecord(cliente.getNome(),cliente.getTelefone(),cliente.getEndereco(),cliente.getLogin(), cliente.getSenha());
     }
 
     //recupera clientes do banco
@@ -28,26 +35,36 @@ public class ClienteService {
         return clienteLista.stream().map(ClienteDTO::new).collect(Collectors.toList());
     }
 
-    public ClienteDTO acharClientePorID(long id){
+    public ClienteDTOComRecord acharClientePorID(long id){
         Optional<Cliente> cliente = this.clienteRepository.findById(id);
         if(cliente.isEmpty()){
-            throw new RuntimeException("O cliente não foi encontrado");
+            throw new ResourceNotFoundException("Cliente não encontrado" + id);
         }else {
-            return new ClienteDTO(cliente.get());
+            return new ClienteDTOComRecord(cliente.get().getNome(), cliente.get().getTelefone(), cliente.get().getEndereco(), cliente.get().getLogin(), cliente.get().getSenha());
         }
     }
 
-    public ClienteDTO fazerAleracoesCliente(ClienteDTO clienteDTO,long id) {
-        this.acharClientePorID(id);
-        Cliente cliente = ClienteDTO.convert(clienteDTO);
-        cliente.setId(cliente.getId());
+    public ClienteDTOComRecord fazerAleracoesCliente(ClienteDTOComRecord clienteDTOComRecord, long id) {
+        this.acharClientePorID(id);//retorna o cliente salvo no banco de dados
+//        Cliente cliente = ClienteDTO.convert(clienteDTOTeste);
+//        cliente.setId(cliente.getId());
+//        this.clienteRepository.save(cliente);
+
+        Cliente cliente = new Cliente();
+        cliente.setId(id);
+        cliente.setNome(clienteDTOComRecord.nome());
+        cliente.setTelefone(clienteDTOComRecord.telefone());
+        cliente.setEndereco(clienteDTOComRecord.endereco());
+        cliente.setLogin(clienteDTOComRecord.login());
+        cliente.setSenha(clienteDTOComRecord.senha());
         this.clienteRepository.save(cliente);
-        return new ClienteDTO(cliente);
+        return new ClienteDTOComRecord(cliente.getNome(),cliente.getTelefone(),cliente.getEndereco(),cliente.getLogin(), cliente.getSenha());
+
     }
 
-    public ClienteDTO deletar(long id){
-        ClienteDTO clienteDTO = acharClientePorID(id);
+    public ClienteDTOComRecord deletar(long id){
+        ClienteDTOComRecord clienteDTOComRecord = acharClientePorID(id);
         this.clienteRepository.deleteById(id);
-        return clienteDTO;
+        return clienteDTOComRecord;
     }
 }

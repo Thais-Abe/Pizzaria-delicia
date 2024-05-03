@@ -1,6 +1,7 @@
 package com.pizzariaDelicia.demo.controllers;
 
 import com.pizzariaDelicia.demo.models.dtos.ClienteDTO;
+import com.pizzariaDelicia.demo.models.dtos.ClienteDTOComRecord;
 import com.pizzariaDelicia.demo.services.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +21,20 @@ public class ClienteController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ClienteDTO acharClientePorID(@PathVariable long id){
+    public ClienteDTOComRecord acharClientePorID(@PathVariable long id){
         return this.clienteService.acharClientePorID(id);
     }
     @PostMapping
-    public ClienteDTO save(@RequestBody @Valid ClienteDTO clienteDTO){
-        return this.clienteService.save(clienteDTO);
+    public ClienteDTOComRecord save(@RequestBody @Valid ClienteDTOComRecord clienteDTOComRecord){
+        return this.clienteService.save(clienteDTOComRecord);
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ClienteDTO fazerAleracoesCliente(@RequestBody @Valid ClienteDTO clienteDTO, @PathVariable long id){
-        return this.clienteService.fazerAleracoesCliente(clienteDTO, id);
+    public ClienteDTOComRecord fazerAleracoesCliente(@RequestBody @Valid ClienteDTOComRecord clienteDTOComRecord, @PathVariable long id){
+        return this.clienteService.fazerAleracoesCliente(clienteDTOComRecord, id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ClienteDTO deletar(@PathVariable long id){
+    public ClienteDTOComRecord deletar(@PathVariable long id){
         return this.clienteService.deletar(id);
     }
 }
